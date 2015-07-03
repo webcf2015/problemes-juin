@@ -2,7 +2,7 @@
 // connexion db
 define("DB_SERVEUR", "localhost");
 define("DB_LOGIN", "root");
-define("DB_MDP", "localhost");
+define("DB_MDP", "");
 define("DB_NAME", "problemes_juin");
 
 // chemin racine
