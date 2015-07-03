@@ -38,13 +38,30 @@ $recup_articles = mysqli_query($connect,"
             <?php
 
             while($ligne=  mysqli_fetch_assoc($recup_rub)){
-                echo "<li><a href='".CHEMIN."/?idrub=.".$ligne['id']."'>".$ligne['letitre']."</a></li>";
+                echo "<li><a href='".CHEMIN."?idrub=.".$ligne['id']."'>".$ligne['letitre']."</a></li>";
             }
             ?>
-            <li><a href='<?=CHEMIN?>/insert.php'>Admin</a></li>
+            <li><a href='<?=CHEMIN?>insert.php'>Admin</a></li>
         </ul>
         <?php
+        while($ligne=  mysqli_fetch_assoc($recup_articles)){
+            echo "<div id='article'>".
+            "<h1 style='color:blue;'>".$ligne['letitre']."</h1>".
+            "<h4> par  <i>".$ligne['lelogin']." </i>le <i> ".$ligne['ladate']."</i></h4>".
+            "<h3>".$ligne['letexte']."</h3>".        
+            "</div>";
+        
+        
+        $rubrik = explode('^|^',$ligne['rubtitre']);
+        $rub_id = explode(',', $ligne['rubid']);
+        foreach($rubrik AS $cle => $value)
+        {
+            echo'<span><a href="'.CHEMIN.'?idrub='.$rub_id[$cle].'">'.$value.'</a></span> &nbsp;';
+        }
+         echo '<hr/><br/>';       
+        }
         // put your code here
         ?>
+        
     </body>
 </html>
